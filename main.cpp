@@ -1,5 +1,6 @@
 #include <iostream>
 #include <chrono>
+#include <fmt/format.h>
 
 int main()
 {
@@ -9,7 +10,8 @@ int main()
         auto now = std::chrono::system_clock::now();
         auto zone = std::chrono::zoned_time(std::chrono::current_zone(), now);
 
-        std::cout << std::format("{:%H:%M:%S}", zone) << '\n';
+        const auto formatado = std::format("{:%H:%M:%S}", zone);
+        fmt::print("Horário: {}\n", formatado);
     }
     catch (const std::exception &e)
     {
