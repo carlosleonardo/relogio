@@ -11,7 +11,7 @@ int main()
         while (true)
         {
             auto now = std::chrono::system_clock::now();
-#if __GNUC__ > 11
+#if __GNUC__ > 11 || defined(_WIN32)
             auto zone = std::chrono::zoned_time(std::chrono::current_zone(), now);
 
             const auto formatado = std::format("{:%H:%M:%S}", zone);
