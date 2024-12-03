@@ -2,13 +2,23 @@
 #include <chrono>
 #include <fmt/format.h>
 #include <thread>
+#include <csignal>
+#include <atomic>
+
+std::atomic<bool> executando{true};
+
+void signal_handler(int signal)
+{
+    executando = false;
+}
 
 int main()
 {
-
+    std::signal(SIGINT, signal_handler);
+    std::signal(SIGTERM, signal_handler);
     try
     {
-        while (true)
+        while (executando)
         {
             auto now = std::chrono::system_clock::now();
 #if __GNUC__ > 11 || defined(_WIN32)
@@ -31,6 +41,11 @@ int main()
     catch (const std::exception &e)
     {
         std::cerr << e.what() << '\n';
+    }
+    catch (...)
+    {
+        fmt::print("\rErro desconhecido");
+        return -1;
     }
     return 0;
 }
