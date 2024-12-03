@@ -15,7 +15,7 @@ int main()
 
             const auto formatado = std::format("{:%H:%M:%S}", zone);
             fmt::print("\rHorário: {}", formatado);
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+            // std::this_thread::sleep_for(std::chrono::milliseconds(100));
         }
     }
     catch (const std::exception &e)
