@@ -10,6 +10,7 @@ std::atomic<bool> executando{true};
 void signal_handler(int signal)
 {
     executando = false;
+    fmt::print("\nInterrupção\n");
 }
 
 int main()
