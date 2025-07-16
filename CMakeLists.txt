@@ -7,5 +7,3 @@ add_executable(relogio main.cpp)
 
 find_package(fmt CONFIG REQUIRED)
 target_link_libraries(${PROJECT_NAME} PRIVATE fmt::fmt)
-find_package(date CONFIG REQUIRED)
-target_link_libraries(${PROJECT_NAME} PRIVATE date::date date::date-tz)
